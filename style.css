@@ -9,9 +9,8 @@
 .certifications-section{padding-top:78px;padding-bottom:82px;background:#fff}
 .credential-list{display:grid;grid-template-columns:1fr;gap:0;margin-top:30px;border-top:1px solid var(--line)}
 .credential-item{padding:22px 4px;border-bottom:1px solid var(--line)}
-.credential-content{max-width:920px}
 .credential-kicker{font-size:9px;letter-spacing:.14em;font-weight:800;color:var(--blue);margin:0 0 8px}
-.credential-content h3{font-size:15px;line-height:1.55;color:var(--navy);margin:0 0 9px}
-.credential-content p:not(.credential-kicker){font-size:11px;line-height:1.8;color:var(--muted);margin:4px 0}
-.credential-content a{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
-@media(max-width:650px){.certifications-section{padding-top:60px;padding-bottom:60px}.credential-item{padding:18px 0}.credential-content h3{font-size:14px}}
+.credential-item h3{font-size:15px;line-height:1.55;color:var(--navy);margin:0 0 9px}
+.credential-item p:not(.credential-kicker){font-size:11px;line-height:1.8;color:var(--muted);margin:4px 0}
+.credential-item a{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
+@media(max-width:650px){.certifications-section{padding-top:60px;padding-bottom:60px}.credential-item{padding:18px 0}.credential-item h3{font-size:14px}}
