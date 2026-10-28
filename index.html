@@ -1,5 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+  <style>
+  /* Nền trắng xanh nhẹ, chữ navy */
+  :root {
+    --bg: #f8faff;
+    --surface: #ffffff;
+    --soft: #eef4fc;
+    --text: #172b4d;
+    --ink: #172b4d;
+    --muted: #64748b;
+    --line: #dfe8f4;
+    --accent: #3569b0;
+    --green: #3569b0;
+    --green-hover: #254f8b;
+    --gold: #8aa8cf;
+  }
+
+  body {
+    background: #f8faff;
+    color: #172b4d;
+  }
+
+  /* Thanh hồ sơ */
+  .sidebar,
+  .research-sidebar {
+    background: #ffffff;
+    border-right-color: #dfe8f4;
+  }
+
+  .navigation a:hover,
+  .navigation a.active,
+  .header nav a:hover,
+  .header nav a.active {
+    background: #eaf2ff;
+    color: #285a9f;
+  }
+
+  /* Các thẻ nội dung */
+  .publication,
+  .research-row,
+  .project,
+  .project-card,
+  .certificate,
+  .cert-card {
+    background: #ffffff;
+    border: 1px solid #dfe8f4;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(35, 72, 125, 0.035);
+  }
+
+  .publication:hover,
+  .research-row:hover,
+  .project:hover,
+  .project-card:hover,
+  .certificate:hover,
+  .cert-card:hover {
+    border-color: #b6cdec;
+    box-shadow: 0 10px 28px rgba(35, 72, 125, 0.08);
+  }
+
+  .skills,
+  .skills-panel,
+  .education {
+    background: #eef4fc;
+    border-color: #dfe8f4;
+  }
+
+  /* Tiêu đề và nhãn */
+  .section-title,
+  .section-heading h2,
+  .page-title,
+  .name {
+    color: #172b4d;
+  }
+
+  .tags span {
+    background: #edf4ff;
+    color: #35649e;
+    border-color: #dce8f8;
+  }
+
+  .publication-link,
+  .doi,
+  .view-certificate,
+  .cert-view,
+  .project-more {
+    color: #3569b0;
+  }
+
+  /* Trả ba ảnh minh họa về màu gốc */
+  .project-image,
+  .project:hover .project-image,
+  .project-art img,
+  .project-card:hover .project-art img,
+  .modal-image img {
+    filter: none !important;
+    opacity: 1 !important;
+  }
+
+  /* Giữ đúng màu ảnh chân dung và chứng chỉ */
+  .avatar,
+  .portrait-photo img,
+  .certificate-image img,
+  .cert-preview img {
+    filter: none !important;
+  }
+
+  .certificate-image,
+  .cert-preview {
+    background: #f1f5fb;
+  }
+
+  .contact-links .email,
+  .button.primary {
+    background: #3569b0;
+    border-color: #3569b0;
+    color: #ffffff;
+  }
+
+  .contact-links .email:hover,
+  .button.primary:hover {
+    background: #254f8b;
+  }
+</style>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
