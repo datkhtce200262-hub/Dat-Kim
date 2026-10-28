@@ -1,29 +1,29 @@
 @charset "UTF-8";
 :root {
-  --bg:#f6f5ef;
-  --surface:#fffef9;
-  --soft:#eeeee5;
-  --ink:#242e29;
-  --muted:#70776d;
-  --green:#285443;
-  --green-hover:#173e2f;
-  --line:#dcded2;
-  --gold:#b59b64;
+  --bg:#ffffff;
+  --surface:#ffffff;
+  --soft:#f6f7f9;
+  --ink:#202329;
+  --muted:#686d76;
+  --green:#252a33;
+  --green-hover:#454c58;
+  --line:#e5e7eb;
+  --gold:#a8adb7;
   --serif:Georgia,'Times New Roman',serif;
   --sans:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  --shadow:0 24px 70px #253d2e13;
+  --shadow:0 24px 70px #18202f0d;
   color-scheme:light
 }
 :root[data-theme=dark] {
-  --bg:#161e1a;
-  --surface:#202b24;
-  --soft:#1c2720;
-  --ink:#edeee4;
-  --muted:#a5b0a4;
-  --green:#b3d1b8;
-  --green-hover:#cbe8d0;
-  --line:#354339;
-  --gold:#cfba87;
+  --bg:#15171b;
+  --surface:#1d2026;
+  --soft:#1a1d22;
+  --ink:#f2f3f5;
+  --muted:#a9afb9;
+  --green:#e3e6eb;
+  --green-hover:#ffffff;
+  --line:#343943;
+  --gold:#8f97a5;
   --shadow:0 24px 70px #0003;
   color-scheme:dark
 }
@@ -47,8 +47,8 @@ body.modal-open {
   overflow:hidden
 }
 ::selection {
-  background:#b5c9a9;
-  color:#193324
+  background:#e3e7ed;
+  color:#202329
 }
 a {
   color:inherit;
@@ -321,15 +321,15 @@ p {
   padding:22px 15px 25px
 }
 .portrait-card {
-  background:#e8e9df;
+  background:#f5f6f8;
   width:350px;
-  border:1px solid #fff9;
+  border:1px solid #e8eaef;
   border-radius:7px;
   box-shadow:var(--shadow);
   padding:19px 23px 23px;
   transform:rotate(3deg);
   position:relative;
-  color:#28392e;
+  color:#292e37;
   animation:portrait-in 1s both
 }
 .portrait-top {
@@ -350,7 +350,7 @@ p {
   height:100%;
   width:100%;
   object-fit:cover;
-  filter:saturate(.63);
+  filter:saturate(.75);
   transition:filter .5s,transform .7s
 }
 .portrait-card:hover img {
@@ -361,7 +361,7 @@ p {
   position:absolute;
   width:18px;
   height:18px;
-  border-color:#6b8a6b;
+  border-color:#a5acb6;
   border-style:solid;
   opacity:.8
 }
@@ -400,14 +400,14 @@ p {
 .portrait-card figcaption div>span {
   font-size:8px;
   display:block;
-  color:#667265;
+  color:#737b87;
   margin-top:2px
 }
 .signature {
   font-size:27px;
   font-style:italic;
   font-family:var(--serif);
-  color:#3f6049
+  color:#4c5563
 }
 .orbit {
   position:absolute;
@@ -706,10 +706,12 @@ p {
   height:100%;
   width:100%;
   object-fit:cover;
-  transition:transform .65s cubic-bezier(.2,.7,.2,1)
+  filter:grayscale(1);
+  transition:transform .65s cubic-bezier(.2,.7,.2,1),filter .65s ease
 }
 .project-card:hover .project-art img {
-  transform:scale(1.045)
+  transform:scale(1.045);
+  filter:grayscale(.75)
 }
 .art-label {
   position:absolute;
@@ -718,7 +720,7 @@ p {
   font-size:7px;
   letter-spacing:1.3px;
   background:#ffffffc9;
-  color:#2d4136;
+  color:#353c47;
   padding:4px 7px;
   border-radius:2px
 }
@@ -729,8 +731,8 @@ p {
   width:31px;
   height:31px;
   border-radius:50%;
-  background:#fffef5dd;
-  color:#294c37;
+  background:#ffffffed;
+  color:#303844;
   display:grid;
   place-items:center;
   font-size:17px;
@@ -885,7 +887,7 @@ p {
 }
 .cert-preview {
   aspect-ratio:1.85;
-  background:#e4e7df;
+  background:#eff1f4;
   padding:18px 28px;
   overflow:hidden;
   position:relative;
@@ -900,7 +902,7 @@ p {
   object-fit:contain;
   filter:saturate(.78);
   transition:transform .5s,filter .5s;
-  box-shadow:0 5px 15px #243e2410
+  box-shadow:0 5px 15px #18202f0b
 }
 .cert-card:hover .cert-preview img {
   transform:scale(1.035);
@@ -937,12 +939,12 @@ p {
   font-weight:600;
   font-size:10px;
   letter-spacing:-.5px;
-  color:#5d7762;
+  color:#666f7d;
   display:inline-grid;
   place-items:center;
   width:24px;
   height:24px;
-  background:#e9eee5;
+  background:#eef0f4;
   border-radius:3px
 }
 .provider-mark.google {
@@ -1079,7 +1081,7 @@ p {
   box-shadow:0 35px 100px #0005
 }
 .detail-dialog::backdrop {
-  background:#101a15ab;
+  background:#151922a8;
   backdrop-filter:blur(7px)
 }
 .detail-dialog[open] {
@@ -1097,7 +1099,7 @@ p {
   line-height:1
 }
 .modal-image {
-  background:#e5e9e0;
+  background:#f0f2f5;
   padding:30px;
   display:grid;
   place-items:center
@@ -2038,4 +2040,28 @@ body {
   .orbit {
     display:none
   }
+}
+
+/* Neutral white palette: fine silver edges and soft monochrome surfaces. */
+:root:not([data-theme=dark]) .header {
+  background:rgba(255,255,255,.93);
+}
+:root:not([data-theme=dark]) .portrait-card {
+  background:linear-gradient(145deg,#ffffff 0%,#f2f4f7 100%);
+  box-shadow:0 25px 70px rgba(27,38,56,.09),0 3px 12px rgba(27,38,56,.035);
+}
+:root:not([data-theme=dark]) .floating-note {
+  box-shadow:0 12px 35px rgba(27,38,56,.06);
+}
+:root:not([data-theme=dark]) .skills-panel {
+  background:linear-gradient(145deg,#fcfcfd,#f4f6f8);
+}
+:root:not([data-theme=dark]) .cert-card:hover {
+  box-shadow:0 18px 44px rgba(27,38,56,.07);
+}
+:root[data-theme=dark] .portrait-card {
+  background:#f2f4f7;
+}
+:root[data-theme=dark] .modal-image {
+  background:#252a32;
 }
