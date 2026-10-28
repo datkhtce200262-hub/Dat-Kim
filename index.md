@@ -4,7 +4,9 @@ layout: default
 title: Kim Huỳnh Tiến Đạt
 ---
 
-![Kim Huỳnh Tiến Đạt](dat-profile.png)
+<p align="center">
+  <img src="dat-profile.png" alt="Kim Huỳnh Tiến Đạt" width="180">
+</p>
 
 # Kim Huỳnh Tiến Đạt
 
