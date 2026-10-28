@@ -2065,3 +2065,37 @@ body {
 :root[data-theme=dark] .modal-image {
   background:#252a32;
 }
+
+/* Clear, compact CV layout. */
+body{font-size:17px;line-height:1.7}
+.container{max-width:1140px}
+.hero{min-height:560px;padding-top:48px;grid-template-columns:1.25fr 1fr}
+.hero h1{font-size:72px;line-height:1.12;letter-spacing:-2px;margin:20px 0}
+.hero-intro{font-size:19px;line-height:1.8;max-width:520px}
+.hero-location{font-size:12px;margin-top:24px}
+.hero-buttons .button,.text-link{font-size:14px}
+.portrait-card{transform:none;animation:none;width:300px}
+.portrait-card strong{font-size:17px}
+.portrait-card figcaption div>span{font-size:10px}
+.orbit,.orbit-star,.floating-note,.portrait-top,.signature,.hero-bottom,.expertise-strip,.stats,.section-heading>p,.section-kicker>span:last-child{display:none}
+.section{padding-top:52px;padding-bottom:52px}
+.section-kicker{font-size:12px;margin-bottom:28px;padding-bottom:14px;letter-spacing:1px}
+h2{font-size:43px;letter-spacing:-1px}
+.section-heading{margin-bottom:28px}
+.about-grid{gap:55px}
+.about p{font-size:16px;line-height:1.8}
+.skill-row h3{font-size:17px}.skill-row p{font-size:14px}
+.education strong{font-size:17px}.education div>span{font-size:14px}.education small{font-size:13px}
+.panel-heading,.skills-footer{font-size:12px}
+.project-card h3{font-size:27px}.project-card>p{font-size:14px;min-height:48px}
+.project-meta{font-size:10px}.tags>span{font-size:11px}.project-more{font-size:14px}
+.project-art{aspect-ratio:1.8}.art-label{font-size:8px}
+.research-row h3{font-size:26px}.research-row p{font-size:15px}.research-label,.doi{font-size:11px}
+.cert-card h3{font-size:27px}.cert-card p,.cert-view{font-size:14px}.cert-provider{font-size:10px}
+.cert-preview{aspect-ratio:2.1}
+.contact-section h2{font-size:44px}.contact-section p{font-size:16px}
+.email-row a{font-size:16px}.social-link>span:first-child{font-size:18px}.social-link small,.contact-label{font-size:10px}
+.eyebrow{font-size:12px}.header nav a,.nav-contact{font-size:14px}
+.footer>span,.footer>a:last-child{font-size:12px}
+@media(max-width:800px){.hero h1{font-size:57px}.hero-intro{font-size:17px}.about-grid{gap:28px}.project-grid{grid-template-columns:1fr}.project-art{aspect-ratio:2.5}.project-card>p{min-height:0}.section{padding-block:40px}.cert-provider{font-size:8px}}
+@media(max-width:600px){.hero{padding-top:32px}.hero h1{font-size:53px}.hero-intro{font-size:17px}.portrait-area{min-height:0;margin:20px 0;padding:15px}.portrait-card{width:250px}.about-grid{grid-template-columns:1fr}.section{padding-block:35px}h2,.contact-section h2{font-size:35px}.about p{font-size:16px}.hero-location{font-size:11px}.project-art{aspect-ratio:1.9}.research-row h3{font-size:23px}.research-row p{font-size:14px}.cert-card h3{font-size:25px}.contact-section .eyebrow{font-size:9px}.section-kicker{font-size:11px}.cert-provider{font-size:9px}}
