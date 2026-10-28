@@ -11,7 +11,7 @@
 
   <style>
     :root {
-      --profile-width: 380px;
+      --profile-width: 360px;
       --background: #f8faff;
       --surface: #ffffff;
       --soft: #eef4fc;
@@ -89,14 +89,14 @@
       top: 15px;
     }
 
-    /* SIDEBAR */
+    /* LEFT PROFILE */
 
     .sidebar {
       position: fixed;
       inset: 0 auto 0 0;
       width: var(--profile-width);
       height: 100dvh;
-      padding: 30px 25px;
+      padding: 30px 24px;
       background: var(--surface);
       overflow-y: auto;
       overscroll-behavior: contain;
@@ -105,19 +105,20 @@
     }
 
     .avatar {
-      width: 110px;
-      height: 110px;
+      width: 150px;
+      height: 150px;
+      margin-bottom: 22px;
       object-fit: cover;
-      border: 5px solid var(--soft);
+      border: 6px solid #edf3fc;
       border-radius: 50%;
-      margin-bottom: 19px;
+      box-shadow: 0 5px 20px rgba(35, 72, 125, .07);
     }
 
     .name {
       font-size: 23px;
       font-weight: 700;
       line-height: 1.4;
-      letter-spacing: -0.7px;
+      letter-spacing: -.7px;
       white-space: nowrap;
     }
 
@@ -206,7 +207,7 @@
       font-size: 11px;
     }
 
-    /* DRAGGABLE DIVIDER */
+    /* RESIZABLE DIVIDER */
 
     #profile-divider {
       position: fixed;
@@ -295,7 +296,7 @@
       font-size: clamp(25px, 2.5vw, 34px);
       font-weight: 600;
       line-height: 1.4;
-      letter-spacing: -0.7px;
+      letter-spacing: -.7px;
     }
 
     .eyebrow {
@@ -322,7 +323,7 @@
       font-size: 16px;
     }
 
-    /* CAREER OBJECTIVE AND EDUCATION */
+    /* EDUCATION */
 
     .about-text {
       max-width: 900px;
@@ -362,7 +363,7 @@
       line-height: 1.8;
     }
 
-    /* PUBLICATIONS */
+    /* RESEARCH */
 
     .publication {
       display: block;
@@ -713,31 +714,23 @@
         border-bottom: 1px solid var(--line);
       }
 
-      .profile-top {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-      }
-
       .avatar {
-        flex-shrink: 0;
-        width: 76px;
-        height: 76px;
-        margin: 0;
+        width: 100px;
+        height: 100px;
+        margin-bottom: 17px;
       }
 
       .name {
-        font-size: clamp(17px, 4vw, 23px);
-        letter-spacing: -.6px;
+        font-size: 23px;
       }
 
       .role {
-        margin-top: 5px;
-        font-size: 13px;
+        margin-top: 7px;
+        font-size: 15px;
       }
 
       .school {
-        font-size: 12px;
+        font-size: 13px;
       }
 
       .navigation {
@@ -851,24 +844,20 @@
 
   <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <!-- PROFILE -->
+  <!-- LEFT PROFILE -->
 
   <aside class="sidebar" id="profile-sidebar" aria-label="Profile">
 
-    <div class="profile-top">
-      <img
-        class="avatar"
-        src="assets/portrait.webp"
-        alt="Kim Huỳnh Tiến Đạt"
-        width="110"
-        height="110">
+    <img
+      class="avatar"
+      src="assets/portrait.webp"
+      alt="Kim Huỳnh Tiến Đạt"
+      width="150"
+      height="150">
 
-      <div>
-        <h1 class="name">Kim Huỳnh Tiến Đạt</h1>
-        <p class="role">AI Engineer Intern</p>
-        <p class="school">FPT University</p>
-      </div>
-    </div>
+    <h1 class="name">Kim Huỳnh Tiến Đạt</h1>
+    <p class="role">AI Engineer Intern</p>
+    <p class="school">FPT University</p>
 
     <nav class="navigation" aria-label="Main navigation">
       <a href="#about" class="active">Overview</a>
@@ -888,7 +877,10 @@
 
     <div class="sidebar-section">
       <h2>Contact</h2>
-      <p><a href="tel:0376754472">0376 754 472</a></p>
+
+      <p>
+        <a href="tel:0376754472">0376 754 472</a>
+      </p>
 
       <p>
         <a href="mailto:datkhtce200262@gmail.com">
@@ -959,14 +951,14 @@
     aria-orientation="vertical"
     aria-controls="profile-sidebar"
     aria-valuemin="320"
-    aria-valuemax="560"
-    aria-valuenow="380"
+    aria-valuemax="460"
+    aria-valuenow="360"
     title="Kéo trái/phải để đổi độ rộng. Nhấp đúp để khôi phục.">
   </div>
 
   <main id="main-content">
 
-    <!-- OVERVIEW FIRST -->
+    <!-- CAREER OBJECTIVE AND EDUCATION -->
 
     <section id="about">
       <h2 class="section-title">Career Objective &amp; Education</h2>
@@ -1309,37 +1301,51 @@
       const root = document.documentElement;
       const mobile = window.matchMedia("(max-width: 760px)");
 
-      let width = 380;
+      let width = 360;
       let dragging = false;
+      let pointerOffset = 0;
+      let activePointerId = null;
 
       function maximumWidth() {
         return Math.max(
           320,
-          Math.min(560, window.innerWidth - 420)
+          Math.floor(
+            Math.min(
+              460,
+              window.innerWidth * 0.38,
+              window.innerWidth - 500
+            )
+          )
         );
       }
 
       function resizeProfile(value, save = false) {
+        if (!Number.isFinite(value)) return;
+
         width = Math.round(
           Math.max(320, Math.min(maximumWidth(), value))
         );
 
         root.style.setProperty("--profile-width", width + "px");
 
+        divider.setAttribute("aria-valuemin", "320");
         divider.setAttribute("aria-valuemax", maximumWidth());
         divider.setAttribute("aria-valuenow", width);
         divider.setAttribute("aria-valuetext", width + " pixels");
 
         if (save) {
           try {
-            localStorage.setItem("dat-profile-width", String(width));
+            localStorage.setItem(
+              "dat-profile-width-v2",
+              String(width)
+            );
           } catch (_) {}
         }
       }
 
       try {
         const saved = Number(
-          localStorage.getItem("dat-profile-width")
+          localStorage.getItem("dat-profile-width-v2")
         );
 
         if (Number.isFinite(saved) && saved >= 320) {
@@ -1350,9 +1356,13 @@
       resizeProfile(width);
 
       divider.addEventListener("pointerdown", event => {
-        if (mobile.matches || event.button !== 0) return;
+        if (mobile.matches || event.button !== 0 || dragging) return;
 
         dragging = true;
+        activePointerId = event.pointerId;
+
+        /* Prevent the width from jumping when dragging starts. */
+        pointerOffset = event.clientX - width;
 
         divider.setPointerCapture(event.pointerId);
         document.body.classList.add("resizing");
@@ -1361,9 +1371,9 @@
       });
 
       divider.addEventListener("pointermove", event => {
-        if (dragging) {
-          resizeProfile(event.clientX);
-        }
+        if (!dragging || event.pointerId !== activePointerId) return;
+
+        resizeProfile(event.clientX - pointerOffset);
       });
 
       function finishResize() {
@@ -1371,45 +1381,70 @@
 
         dragging = false;
 
+        const pointerId = activePointerId;
+        activePointerId = null;
+
         document.body.classList.remove("resizing");
         resizeProfile(width, true);
+
+        if (
+          pointerId !== null &&
+          divider.hasPointerCapture(pointerId)
+        ) {
+          divider.releasePointerCapture(pointerId);
+        }
       }
 
-      divider.addEventListener("pointerup", finishResize);
-      divider.addEventListener("pointercancel", finishResize);
+      divider.addEventListener("pointerup", event => {
+        if (event.pointerId === activePointerId) {
+          finishResize();
+        }
+      });
+
+      divider.addEventListener("pointercancel", event => {
+        if (event.pointerId === activePointerId) {
+          finishResize();
+        }
+      });
+
       divider.addEventListener("lostpointercapture", finishResize);
 
       divider.addEventListener("dblclick", () => {
-        resizeProfile(380, true);
+        resizeProfile(360, true);
       });
 
       divider.addEventListener("keydown", event => {
-        const step = event.shiftKey ? 40 : 10;
+        const step = event.shiftKey ? 30 : 10;
 
-        if (event.key === "ArrowLeft") {
-          event.preventDefault();
-          resizeProfile(width - step, true);
-        }
+        switch (event.key) {
+          case "ArrowLeft":
+            event.preventDefault();
+            resizeProfile(width - step, true);
+            break;
 
-        if (event.key === "ArrowRight") {
-          event.preventDefault();
-          resizeProfile(width + step, true);
-        }
+          case "ArrowRight":
+            event.preventDefault();
+            resizeProfile(width + step, true);
+            break;
 
-        if (event.key === "Home") {
-          event.preventDefault();
-          resizeProfile(320, true);
-        }
+          case "Home":
+            event.preventDefault();
+            resizeProfile(320, true);
+            break;
 
-        if (event.key === "End") {
-          event.preventDefault();
-          resizeProfile(maximumWidth(), true);
+          case "End":
+            event.preventDefault();
+            resizeProfile(maximumWidth(), true);
+            break;
         }
       });
 
       window.addEventListener("resize", () => {
+        finishResize();
         resizeProfile(width);
       });
+
+      window.addEventListener("blur", finishResize);
     })();
 
     /* CERTIFICATE PREVIEW */
