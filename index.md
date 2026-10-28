@@ -5,7 +5,7 @@ title: Kim Huỳnh Tiến Đạt
 ---
 
 <p align="center">
-  <img src="dat-profile.png" alt="Kim Huỳnh Tiến Đạt" width="120">
+  <img src="Datk.png" alt="Kim Huỳnh Tiến Đạt" width="150">
 </p>
 
 # Kim Huỳnh Tiến Đạt
