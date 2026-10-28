@@ -89,18 +89,18 @@
       top: 15px;
     }
 
-    /* LEFT PROFILE */
+    /* SIDEBAR */
 
     .sidebar {
       position: fixed;
       inset: 0 auto 0 0;
       width: var(--profile-width);
       height: 100dvh;
+      padding: 30px 25px;
+      background: var(--surface);
       overflow-y: auto;
       overscroll-behavior: contain;
       scrollbar-width: thin;
-      padding: 30px 25px;
-      background: var(--surface);
       z-index: 30;
     }
 
@@ -124,13 +124,12 @@
     .role {
       margin-top: 9px;
       font-size: 16px;
-      color: var(--text);
     }
 
     .school {
-      font-size: 14px;
-      color: var(--muted);
       margin-top: 3px;
+      color: var(--muted);
+      font-size: 14px;
     }
 
     .navigation {
@@ -142,10 +141,10 @@
 
     .navigation a {
       padding: 8px 10px;
-      border-radius: 6px;
+      border-radius: 7px;
       color: var(--muted);
       font-size: 13px;
-      transition: background 0.2s, color 0.2s;
+      transition: background .2s, color .2s;
     }
 
     .navigation a:hover,
@@ -158,10 +157,10 @@
       display: block;
       padding: 10px 14px;
       border: 1px solid var(--line);
-      border-radius: 7px;
+      border-radius: 8px;
       text-align: center;
       font-size: 14px;
-      transition: background 0.2s;
+      transition: background .2s;
     }
 
     .download-cv:hover {
@@ -169,18 +168,18 @@
     }
 
     .sidebar-section {
-      border-top: 1px solid var(--line);
       margin-top: 23px;
       padding-top: 18px;
+      border-top: 1px solid var(--line);
     }
 
     .sidebar-section h2 {
       margin-bottom: 10px;
+      color: var(--accent);
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 1px;
       text-transform: uppercase;
-      color: var(--accent);
     }
 
     .sidebar-section p {
@@ -192,8 +191,8 @@
     }
 
     .sidebar-section strong {
-      font-weight: 600;
       color: var(--text);
+      font-weight: 600;
     }
 
     .sidebar-section a:hover {
@@ -203,8 +202,8 @@
 
     .resize-hint {
       margin-top: 24px;
-      font-size: 11px;
       color: #8090a7;
+      font-size: 11px;
     }
 
     /* DRAGGABLE DIVIDER */
@@ -224,32 +223,47 @@
     #profile-divider::before {
       content: "";
       position: absolute;
-      inset: 0 auto 0 4px;
+      top: 0;
+      bottom: 0;
+      left: 4px;
       width: 2px;
       background: #dbe4f1;
-      transition: background 0.2s;
+      transition: background .2s;
     }
 
     #profile-divider::after {
-      content: "⋮";
+      content: "↔";
       position: absolute;
-      top: 45%;
-      left: -6px;
-      width: 22px;
-      height: 48px;
+      top: 18px;
+      left: -13px;
+      width: 36px;
+      height: 36px;
       display: grid;
       place-items: center;
-      border: 1px solid #cfdef2;
-      border-radius: 8px;
+      border: 1px solid #d5e2f3;
+      border-radius: 10px;
       background: white;
       color: var(--accent);
-      font-size: 23px;
-      box-shadow: 0 3px 12px #243e5e10;
+      font-family: Arial, sans-serif;
+      font-size: 21px;
+      line-height: 1;
+      box-shadow: 0 4px 14px rgba(35, 72, 125, .09);
+      transition:
+        background .2s,
+        border-color .2s,
+        box-shadow .2s;
     }
 
     #profile-divider:hover::before,
     #profile-divider:focus-visible::before {
-      background: var(--accent);
+      background: #9dbbe2;
+    }
+
+    #profile-divider:hover::after,
+    #profile-divider:focus-visible::after {
+      background: #edf4ff;
+      border-color: #9dbbe2;
+      box-shadow: 0 5px 18px rgba(35, 72, 125, .14);
     }
 
     #profile-divider:focus-visible::after {
@@ -267,26 +281,34 @@
 
     main {
       margin-left: var(--profile-width);
-      padding: 0 36px;
+      padding: 0 40px;
       min-width: 0;
     }
 
     section {
-      border-bottom: 1px solid var(--line);
       padding: 35px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-title {
+      margin-bottom: 22px;
+      font-size: clamp(25px, 2.5vw, 34px);
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: -0.7px;
     }
 
     .eyebrow {
+      margin-bottom: 12px;
       color: var(--accent);
       font-size: 11px;
       font-weight: 600;
-      text-transform: uppercase;
       letter-spacing: 1.7px;
-      margin-bottom: 13px;
+      text-transform: uppercase;
     }
 
     .page-title {
-      font-size: clamp(28px, 2.8vw, 42px);
+      font-size: clamp(28px, 2.8vw, 40px);
       font-weight: 650;
       line-height: 1.35;
       letter-spacing: -1px;
@@ -294,104 +316,102 @@
 
     .intro {
       max-width: 850px;
-      color: var(--muted);
-      font-size: 16px;
       margin-top: 17px;
       margin-bottom: 25px;
+      color: var(--muted);
+      font-size: 16px;
     }
 
-    .section-title {
-      font-size: 27px;
+    /* CAREER OBJECTIVE AND EDUCATION */
+
+    .about-text {
+      max-width: 900px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .education {
+      margin-top: 24px;
+      padding: 23px 25px;
+      border: 1px solid #dce7f5;
+      border-left: 4px solid #739bcf;
+      border-radius: 12px;
+      background: linear-gradient(120deg, #ffffff, #eef4fc);
+      box-shadow: 0 5px 20px rgba(35, 72, 125, .035);
+    }
+
+    .education h3 {
+      margin-bottom: 8px;
+      font-size: 20px;
       font-weight: 600;
-      line-height: 1.4;
-      letter-spacing: -0.6px;
-      margin-bottom: 22px;
+    }
+
+    .education p {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .education small {
+      display: block;
+      margin-top: 12px;
+      color: var(--accent);
+      font-size: 13px;
+      line-height: 1.8;
     }
 
     /* PUBLICATIONS */
 
     .publication {
       display: block;
-      padding: 23px;
       margin-top: 16px;
+      padding: 23px;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: white;
-      box-shadow: 0 4px 18px #23487d08;
+      box-shadow: 0 4px 18px rgba(35, 72, 125, .035);
       transition:
-        transform 0.2s,
-        border-color 0.2s,
-        box-shadow 0.2s;
+        transform .2s,
+        border-color .2s,
+        box-shadow .2s;
     }
 
     .publication:hover {
       transform: translateY(-3px);
       border-color: #b6cdec;
-      box-shadow: 0 10px 28px #23487d12;
+      box-shadow: 0 10px 28px rgba(35, 72, 125, .07);
     }
 
     .publication-label {
+      margin-bottom: 8px;
       color: var(--accent);
       font-size: 10px;
       font-weight: 600;
+      letter-spacing: .8px;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
-      margin-bottom: 8px;
     }
 
     .publication h3 {
       font-size: 19px;
       font-weight: 600;
       line-height: 1.65;
-      letter-spacing: -0.2px;
+      letter-spacing: -.2px;
     }
 
     .publication p {
+      margin-top: 9px;
       color: var(--muted);
       font-size: 14px;
-      margin-top: 9px;
     }
 
     .doi {
       display: block;
+      margin-top: 12px;
       color: var(--accent);
       font-size: 12px;
-      margin-top: 12px;
       overflow-wrap: anywhere;
-    }
-
-    /* EDUCATION */
-
-    .about-text {
-      max-width: 850px;
-      color: var(--muted);
-      font-size: 16px;
-    }
-
-    .education {
-      background: var(--soft);
-      border-left: 3px solid #a9c2e3;
-      border-radius: 0 9px 9px 0;
-      margin-top: 22px;
-      padding: 20px;
-    }
-
-    .education h3 {
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    .education p {
-      color: var(--muted);
-      font-size: 14px;
-      margin-top: 5px;
-    }
-
-    .education small {
-      display: block;
-      color: var(--accent);
-      font-size: 13px;
-      margin-top: 7px;
     }
 
     /* PROJECTS */
@@ -403,11 +423,11 @@
     }
 
     .project {
+      align-self: start;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       overflow: hidden;
       background: white;
-      align-self: start;
     }
 
     .project-image {
@@ -422,11 +442,11 @@
     }
 
     .project h3 {
+      margin-bottom: 9px;
       font-size: 18px;
       font-weight: 600;
       line-height: 1.5;
-      letter-spacing: -0.3px;
-      margin-bottom: 9px;
+      letter-spacing: -.3px;
     }
 
     .project p,
@@ -458,9 +478,9 @@
     }
 
     summary {
-      cursor: pointer;
       color: var(--accent);
       font-size: 13px;
+      cursor: pointer;
     }
 
     details ul {
@@ -474,7 +494,7 @@
       font-size: 12px;
     }
 
-    /* CERTIFICATES */
+    /* CERTIFICATIONS */
 
     .certificate-grid {
       display: grid;
@@ -484,24 +504,24 @@
 
     .certificate {
       padding: 0;
-      text-align: left;
-      color: inherit;
-      background: white;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
+      background: white;
+      color: inherit;
+      text-align: left;
+      transition: transform .2s, box-shadow .2s;
     }
 
     .certificate:hover {
       transform: translateY(-3px);
-      box-shadow: 0 10px 28px #23487d12;
+      box-shadow: 0 10px 28px rgba(35, 72, 125, .07);
     }
 
     .certificate-image {
       padding: 16px;
-      background: #f1f5fb;
       border-bottom: 1px solid var(--line);
+      background: #f1f5fb;
     }
 
     .certificate-image img {
@@ -516,11 +536,11 @@
     }
 
     .issuer {
+      margin-bottom: 8px;
       color: var(--muted);
       font-size: 10px;
       font-weight: 600;
-      letter-spacing: 0.8px;
-      margin-bottom: 8px;
+      letter-spacing: .8px;
     }
 
     .certificate h3 {
@@ -530,24 +550,24 @@
     }
 
     .certificate-date {
+      margin-top: 7px;
       color: var(--muted);
       font-size: 13px;
-      margin-top: 7px;
     }
 
     .certificate-link {
       display: block;
+      margin-top: 14px;
       color: var(--accent);
       font-size: 13px;
-      margin-top: 14px;
     }
 
     /* CONTACT */
 
     .contact-text {
-      color: var(--muted);
       max-width: 750px;
       margin-bottom: 22px;
+      color: var(--muted);
     }
 
     .contact-links {
@@ -557,13 +577,13 @@
     }
 
     .contact-links a {
+      padding: 10px 16px;
       border: 1px solid var(--line);
       border-radius: 7px;
       background: white;
-      padding: 10px 16px;
       font-size: 14px;
       overflow-wrap: anywhere;
-      transition: background 0.2s;
+      transition: background .2s;
     }
 
     .contact-links a:hover {
@@ -571,8 +591,8 @@
     }
 
     .contact-links .email {
-      background: var(--accent);
       border-color: var(--accent);
+      background: var(--accent);
       color: white;
     }
 
@@ -599,11 +619,11 @@
       border-radius: 12px;
       background: white;
       color: var(--text);
-      box-shadow: 0 30px 100px #0003;
+      box-shadow: 0 30px 100px rgba(0, 0, 0, .2);
     }
 
     dialog::backdrop {
-      background: #18202da6;
+      background: rgba(24, 32, 45, .65);
     }
 
     .dialog-header {
@@ -700,20 +720,20 @@
       }
 
       .avatar {
+        flex-shrink: 0;
         width: 76px;
         height: 76px;
         margin: 0;
-        flex-shrink: 0;
       }
 
       .name {
         font-size: clamp(17px, 4vw, 23px);
-        letter-spacing: -0.6px;
+        letter-spacing: -.6px;
       }
 
       .role {
-        font-size: 13px;
         margin-top: 5px;
+        font-size: 13px;
       }
 
       .school {
@@ -728,8 +748,8 @@
       }
 
       .navigation a {
-        font-size: 12px;
         padding: 7px 9px;
+        font-size: 12px;
       }
 
       .sidebar-section {
@@ -762,6 +782,10 @@
 
       .section-title {
         font-size: 25px;
+      }
+
+      .education {
+        padding: 19px;
       }
 
       .publication {
@@ -830,6 +854,7 @@
   <!-- PROFILE -->
 
   <aside class="sidebar" id="profile-sidebar" aria-label="Profile">
+
     <div class="profile-top">
       <img
         class="avatar"
@@ -846,8 +871,8 @@
     </div>
 
     <nav class="navigation" aria-label="Main navigation">
-      <a href="#research" class="active">Research</a>
-      <a href="#about">Education</a>
+      <a href="#about" class="active">Overview</a>
+      <a href="#research">Research</a>
       <a href="#projects">Projects</a>
       <a href="#certifications">Certifications</a>
       <a href="#contact">Contact</a>
@@ -864,11 +889,13 @@
     <div class="sidebar-section">
       <h2>Contact</h2>
       <p><a href="tel:0376754472">0376 754 472</a></p>
+
       <p>
         <a href="mailto:datkhtce200262@gmail.com">
           datkhtce200262@gmail.com
         </a>
       </p>
+
       <p>Cần Thơ, Vietnam</p>
     </div>
 
@@ -896,6 +923,7 @@
 
     <div class="sidebar-section">
       <h2>Technical Skills</h2>
+
       <p><strong>Programming:</strong> Python, Basic SQL</p>
       <p><strong>Deep Learning:</strong> CNN, MobileNetV2, YOLO</p>
       <p><strong>Computer Vision:</strong> OpenCV, Image Processing</p>
@@ -916,11 +944,12 @@
     </div>
 
     <p class="resize-hint">
-      Kéo thanh phân cách ↔ để đổi độ rộng.
+      Kéo nút ↔ ở đầu thanh để đổi độ rộng.
     </p>
+
   </aside>
 
-  <!-- DRAG THIS DIVIDER -->
+  <!-- RESIZABLE DIVIDER -->
 
   <div
     id="profile-divider"
@@ -937,6 +966,30 @@
 
   <main id="main-content">
 
+    <!-- OVERVIEW FIRST -->
+
+    <section id="about">
+      <h2 class="section-title">Career Objective &amp; Education</h2>
+
+      <p class="about-text">
+        Artificial Intelligence student at FPT University with hands-on
+        experience in Deep Learning and Computer Vision projects.
+        Seeking an AI Engineer Internship to apply technical skills,
+        gain industry experience, and contribute to real-world AI solutions.
+      </p>
+
+      <div class="education">
+        <h3>FPT University</h3>
+        <p>Major: Artificial Intelligence</p>
+        <p>2024–2028</p>
+
+        <small>
+          Full Scholarship Program — selected as one of 10 students
+          eligible for the program.
+        </small>
+      </div>
+    </section>
+
     <!-- RESEARCH -->
 
     <section id="research">
@@ -945,9 +998,8 @@
       <h2 class="page-title">Research &amp; Publications</h2>
 
       <p class="intro">
-        AI student at FPT University with experience in computer vision
-        and deep learning. My research contributions focus on model
-        experiments, evaluation, and lightweight detection.
+        My research contributions focus on model experiments,
+        performance evaluation, and lightweight visual detection.
       </p>
 
       <a
@@ -999,29 +1051,6 @@
       </a>
     </section>
 
-    <!-- OBJECTIVE AND EDUCATION -->
-
-    <section id="about">
-      <h2 class="section-title">Career Objective &amp; Education</h2>
-
-      <p class="about-text">
-        Artificial Intelligence student at FPT University with hands-on
-        experience in Deep Learning and Computer Vision projects.
-        Seeking an AI Engineer Internship to apply technical skills,
-        gain industry experience, and contribute to real-world AI solutions.
-      </p>
-
-      <div class="education">
-        <h3>FPT University</h3>
-        <p>Major: Artificial Intelligence</p>
-        <p>2024–2028</p>
-        <small>
-          Full Scholarship Program — selected as one of 10 students
-          eligible for the program.
-        </small>
-      </div>
-    </section>
-
     <!-- PROJECTS -->
 
     <section id="projects">
@@ -1047,6 +1076,7 @@
 
             <details>
               <summary>Contribution &amp; results</summary>
+
               <ul>
                 <li>Contributed to model development.</li>
                 <li>
@@ -1070,7 +1100,10 @@
 
           <div class="project-body">
             <h3>Traffic Sign Classification</h3>
-            <p>CNN and MobileNetV2 classification for 43 GTSRB classes.</p>
+
+            <p>
+              CNN and MobileNetV2 classification for 43 GTSRB classes.
+            </p>
 
             <div class="tags">
               <span>TensorFlow</span>
@@ -1079,6 +1112,7 @@
 
             <details>
               <summary>My contribution</summary>
+
               <ul>
                 <li>Image preprocessing and data augmentation.</li>
                 <li>Model training using TensorFlow and Keras.</li>
@@ -1097,6 +1131,7 @@
 
           <div class="project-body">
             <h3>Helmet Recognition</h3>
+
             <p>
               Image preprocessing to prepare data for helmet recognition.
             </p>
@@ -1108,6 +1143,7 @@
 
             <details>
               <summary>My contribution</summary>
+
               <ul>
                 <li>Implemented image preprocessing in Python.</li>
                 <li>Prepared visual data using OpenCV.</li>
@@ -1231,12 +1267,12 @@
 
     <footer>
       <span>© <span id="year">2026</span> Kim Huỳnh Tiến Đạt</span>
-      <a href="#research">Back to top ↑</a>
+      <a href="#about">Back to top ↑</a>
     </footer>
 
   </main>
 
-  <!-- CERTIFICATE PREVIEW -->
+  <!-- CERTIFICATE MODAL -->
 
   <dialog id="certificate-dialog" aria-labelledby="dialog-title">
     <div class="dialog-header">
@@ -1277,7 +1313,10 @@
       let dragging = false;
 
       function maximumWidth() {
-        return Math.max(320, Math.min(560, window.innerWidth - 420));
+        return Math.max(
+          320,
+          Math.min(560, window.innerWidth - 420)
+        );
       }
 
       function resizeProfile(value, save = false) {
@@ -1299,7 +1338,9 @@
       }
 
       try {
-        const saved = Number(localStorage.getItem("dat-profile-width"));
+        const saved = Number(
+          localStorage.getItem("dat-profile-width")
+        );
 
         if (Number.isFinite(saved) && saved >= 320) {
           width = saved;
@@ -1371,7 +1412,7 @@
       });
     })();
 
-    /* CERTIFICATE MODAL */
+    /* CERTIFICATE PREVIEW */
 
     const certificates = {
       gemini: {
@@ -1425,7 +1466,6 @@
         dialogImage.alt = certificate.title + " certificate";
 
         originalLink.href = certificate.original;
-
         verifyLink.hidden = !certificate.verify;
 
         if (certificate.verify) {
