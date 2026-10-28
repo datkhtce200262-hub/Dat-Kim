@@ -1,144 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <style>
-  /* Nền trắng xanh nhẹ, chữ navy */
-  :root {
-    --bg: #f8faff;
-    --surface: #ffffff;
-    --soft: #eef4fc;
-    --text: #172b4d;
-    --ink: #172b4d;
-    --muted: #64748b;
-    --line: #dfe8f4;
-    --accent: #3569b0;
-    --green: #3569b0;
-    --green-hover: #254f8b;
-    --gold: #8aa8cf;
-  }
-
-  body {
-    background: #f8faff;
-    color: #172b4d;
-  }
-
-  /* Thanh hồ sơ */
-  .sidebar,
-  .research-sidebar {
-    background: #ffffff;
-    border-right-color: #dfe8f4;
-  }
-
-  .navigation a:hover,
-  .navigation a.active,
-  .header nav a:hover,
-  .header nav a.active {
-    background: #eaf2ff;
-    color: #285a9f;
-  }
-
-  /* Các thẻ nội dung */
-  .publication,
-  .research-row,
-  .project,
-  .project-card,
-  .certificate,
-  .cert-card {
-    background: #ffffff;
-    border: 1px solid #dfe8f4;
-    border-radius: 12px;
-    box-shadow: 0 4px 18px rgba(35, 72, 125, 0.035);
-  }
-
-  .publication:hover,
-  .research-row:hover,
-  .project:hover,
-  .project-card:hover,
-  .certificate:hover,
-  .cert-card:hover {
-    border-color: #b6cdec;
-    box-shadow: 0 10px 28px rgba(35, 72, 125, 0.08);
-  }
-
-  .skills,
-  .skills-panel,
-  .education {
-    background: #eef4fc;
-    border-color: #dfe8f4;
-  }
-
-  /* Tiêu đề và nhãn */
-  .section-title,
-  .section-heading h2,
-  .page-title,
-  .name {
-    color: #172b4d;
-  }
-
-  .tags span {
-    background: #edf4ff;
-    color: #35649e;
-    border-color: #dce8f8;
-  }
-
-  .publication-link,
-  .doi,
-  .view-certificate,
-  .cert-view,
-  .project-more {
-    color: #3569b0;
-  }
-
-  /* Trả ba ảnh minh họa về màu gốc */
-  .project-image,
-  .project:hover .project-image,
-  .project-art img,
-  .project-card:hover .project-art img,
-  .modal-image img {
-    filter: none !important;
-    opacity: 1 !important;
-  }
-
-  /* Giữ đúng màu ảnh chân dung và chứng chỉ */
-  .avatar,
-  .portrait-photo img,
-  .certificate-image img,
-  .cert-preview img {
-    filter: none !important;
-  }
-
-  .certificate-image,
-  .cert-preview {
-    background: #f1f5fb;
-  }
-
-  .contact-links .email,
-  .button.primary {
-    background: #3569b0;
-    border-color: #3569b0;
-    color: #ffffff;
-  }
-
-  .contact-links .email:hover,
-  .button.primary:hover {
-    background: #254f8b;
-  }
-</style>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#f8faff">
   <meta name="description"
-        content="Kim Huỳnh Tiến Đạt — AI student at FPT University. Research, computer vision projects and certifications.">
+        content="Kim Huỳnh Tiến Đạt — Artificial Intelligence student at FPT University. Research, computer vision projects and certifications.">
+
   <title>Dat Kim | AI & Research</title>
 
   <style>
     :root {
-      --bg: #ffffff;
-      --soft: #f7f9fc;
-      --text: #202733;
-      --muted: #667085;
-      --line: #e5eaf1;
-      --accent: #365f99;
+      --profile-width: 380px;
+      --background: #f8faff;
+      --surface: #ffffff;
+      --soft: #eef4fc;
+      --text: #172b4d;
+      --muted: #64748b;
+      --line: #dfe8f4;
+      --accent: #3569b0;
       --radius: 12px;
     }
 
@@ -148,16 +28,20 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 30px;
+      scroll-padding-top: 24px;
     }
 
     body {
       margin: 0;
-      background: var(--bg);
+      background: var(--background);
       color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
       font-size: 16px;
       line-height: 1.75;
+    }
+
+    h1, h2, h3, p {
+      margin: 0;
     }
 
     a {
@@ -175,176 +59,265 @@
       max-width: 100%;
     }
 
-    h1, h2, h3, p {
-      margin: 0;
-    }
-
     a:focus-visible,
     button:focus-visible,
     summary:focus-visible {
-      outline: 3px solid #99b5de;
+      outline: 3px solid #a4bee2;
       outline-offset: 4px;
+    }
+
+    [hidden] {
+      display: none !important;
     }
 
     ::selection {
       background: #dce8f8;
     }
 
-    /* PROFILE SIDEBAR */
+    .skip-link {
+      position: fixed;
+      top: -80px;
+      left: 15px;
+      z-index: 200;
+      padding: 9px 16px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+    }
+
+    .skip-link:focus {
+      top: 15px;
+    }
+
+    /* LEFT PROFILE */
 
     .sidebar {
       position: fixed;
       inset: 0 auto 0 0;
-      width: 270px;
-      padding: 38px 26px;
-      border-right: 1px solid var(--line);
-      background: white;
+      width: var(--profile-width);
+      height: 100dvh;
       overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      padding: 30px 25px;
+      background: var(--surface);
+      z-index: 30;
     }
 
     .avatar {
-      width: 112px;
-      height: 112px;
+      width: 110px;
+      height: 110px;
       object-fit: cover;
-      border-radius: 50%;
       border: 5px solid var(--soft);
-      margin-bottom: 20px;
+      border-radius: 50%;
+      margin-bottom: 19px;
     }
 
     .name {
-      font-size: 25px;
+      font-size: 23px;
+      font-weight: 700;
       line-height: 1.4;
       letter-spacing: -0.7px;
-      font-weight: 700;
+      white-space: nowrap;
     }
 
     .role {
-      margin-top: 10px;
-      font-size: 15px;
+      margin-top: 9px;
+      font-size: 16px;
+      color: var(--text);
     }
 
-    .university,
-    .focus,
-    .location {
-      color: var(--muted);
+    .school {
       font-size: 14px;
-    }
-
-    .university {
+      color: var(--muted);
       margin-top: 3px;
-    }
-
-    .focus {
-      margin-top: 18px;
     }
 
     .navigation {
       display: grid;
-      gap: 6px;
-      margin: 30px 0 24px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 5px;
+      margin: 23px 0;
     }
 
     .navigation a {
-      padding: 10px 13px;
-      border-radius: 7px;
-      font-size: 15px;
+      padding: 8px 10px;
+      border-radius: 6px;
       color: var(--muted);
+      font-size: 13px;
       transition: background 0.2s, color 0.2s;
     }
 
     .navigation a:hover,
     .navigation a.active {
-      background: #edf3fb;
       color: var(--accent);
+      background: #eaf2ff;
     }
 
-    .download {
+    .download-cv {
       display: block;
-      padding: 10px 15px;
-      text-align: center;
+      padding: 10px 14px;
       border: 1px solid var(--line);
       border-radius: 7px;
+      text-align: center;
       font-size: 14px;
       transition: background 0.2s;
     }
 
-    .download:hover {
+    .download-cv:hover {
       background: var(--soft);
     }
 
-    .socials {
-      display: flex;
-      gap: 22px;
-      margin-top: 20px;
+    .sidebar-section {
+      border-top: 1px solid var(--line);
+      margin-top: 23px;
+      padding-top: 18px;
+    }
+
+    .sidebar-section h2 {
+      margin-bottom: 10px;
       font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
       color: var(--accent);
     }
 
-    .location {
-      margin-top: 28px;
-      font-size: 12px;
-      line-height: 1.9;
+    .sidebar-section p {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    .sidebar-section strong {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .sidebar-section a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .resize-hint {
+      margin-top: 24px;
+      font-size: 11px;
+      color: #8090a7;
+    }
+
+    /* DRAGGABLE DIVIDER */
+
+    #profile-divider {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: calc(var(--profile-width) - 5px);
+      width: 10px;
+      z-index: 45;
+      cursor: col-resize;
+      touch-action: none;
+      outline: none;
+    }
+
+    #profile-divider::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 4px;
+      width: 2px;
+      background: #dbe4f1;
+      transition: background 0.2s;
+    }
+
+    #profile-divider::after {
+      content: "⋮";
+      position: absolute;
+      top: 45%;
+      left: -6px;
+      width: 22px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #cfdef2;
+      border-radius: 8px;
+      background: white;
+      color: var(--accent);
+      font-size: 23px;
+      box-shadow: 0 3px 12px #243e5e10;
+    }
+
+    #profile-divider:hover::before,
+    #profile-divider:focus-visible::before {
+      background: var(--accent);
+    }
+
+    #profile-divider:focus-visible::after {
+      outline: 3px solid #a4bee2;
+      outline-offset: 2px;
+    }
+
+    body.resizing,
+    body.resizing * {
+      cursor: col-resize !important;
+      user-select: none !important;
     }
 
     /* MAIN CONTENT */
 
     main {
-      margin-left: 270px;
-      padding: 0 52px;
-      max-width: 1500px;
+      margin-left: var(--profile-width);
+      padding: 0 36px;
+      min-width: 0;
     }
 
     section {
-      padding: 42px 0;
       border-bottom: 1px solid var(--line);
-    }
-
-    #research {
-      padding-top: 48px;
+      padding: 35px 0;
     }
 
     .eyebrow {
       color: var(--accent);
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 14px;
+      letter-spacing: 1.7px;
+      margin-bottom: 13px;
     }
 
     .page-title {
-      font-family: Georgia, "Times New Roman", serif;
-      font-weight: 400;
-      font-size: clamp(40px, 4.7vw, 62px);
-      line-height: 1.15;
-      letter-spacing: -1.7px;
+      font-size: clamp(28px, 2.8vw, 42px);
+      font-weight: 650;
+      line-height: 1.35;
+      letter-spacing: -1px;
     }
 
     .intro {
-      max-width: 760px;
-      margin-top: 22px;
-      margin-bottom: 28px;
+      max-width: 850px;
       color: var(--muted);
       font-size: 16px;
+      margin-top: 17px;
+      margin-bottom: 25px;
     }
 
     .section-title {
-      font-size: 29px;
-      line-height: 1.35;
-      letter-spacing: -0.7px;
+      font-size: 27px;
       font-weight: 600;
-      margin-bottom: 24px;
+      line-height: 1.4;
+      letter-spacing: -0.6px;
+      margin-bottom: 22px;
     }
 
     /* PUBLICATIONS */
 
     .publication {
       display: block;
-      padding: 24px;
+      padding: 23px;
       margin-top: 16px;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: white;
+      box-shadow: 0 4px 18px #23487d08;
       transition:
         transform 0.2s,
         border-color 0.2s,
@@ -353,17 +326,17 @@
 
     .publication:hover {
       transform: translateY(-3px);
-      border-color: #c6d5e9;
-      box-shadow: 0 10px 28px rgba(31, 49, 77, 0.05);
+      border-color: #b6cdec;
+      box-shadow: 0 10px 28px #23487d12;
     }
 
     .publication-label {
-      font-size: 10px;
       color: var(--accent);
+      font-size: 10px;
       font-weight: 600;
-      letter-spacing: 1px;
       text-transform: uppercase;
-      margin-bottom: 9px;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
     }
 
     .publication h3 {
@@ -376,83 +349,49 @@
     .publication p {
       color: var(--muted);
       font-size: 14px;
-      margin-top: 10px;
+      margin-top: 9px;
     }
 
-    .publication-link {
+    .doi {
       display: block;
-      margin-top: 13px;
       color: var(--accent);
       font-size: 12px;
+      margin-top: 12px;
       overflow-wrap: anywhere;
     }
 
-    /* ABOUT, EDUCATION AND SKILLS */
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 1fr;
-      gap: 32px;
-    }
+    /* EDUCATION */
 
     .about-text {
+      max-width: 850px;
       color: var(--muted);
       font-size: 16px;
     }
 
     .education {
-      margin-top: 25px;
-      padding: 20px;
-      border-left: 3px solid #b6c9e5;
       background: var(--soft);
+      border-left: 3px solid #a9c2e3;
       border-radius: 0 9px 9px 0;
+      margin-top: 22px;
+      padding: 20px;
     }
 
     .education h3 {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 600;
     }
 
     .education p {
-      margin-top: 5px;
       color: var(--muted);
       font-size: 14px;
+      margin-top: 5px;
     }
 
     .education small {
       display: block;
-      margin-top: 6px;
       color: var(--accent);
       font-size: 13px;
-    }
-
-    .skills {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 22px;
-      background: var(--soft);
-    }
-
-    .skills h3 {
-      font-size: 17px;
-      margin-bottom: 17px;
-    }
-
-    .skill-group + .skill-group {
-      margin-top: 18px;
-      padding-top: 16px;
-      border-top: 1px solid var(--line);
-    }
-
-    .skill-label {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 7px;
-    }
-
-    .skill-group p {
-      font-size: 14px;
-      color: var(--muted);
+      margin-top: 7px;
     }
 
     /* PROJECTS */
@@ -467,15 +406,15 @@
       border: 1px solid var(--line);
       border-radius: var(--radius);
       overflow: hidden;
-      align-self: start;
       background: white;
+      align-self: start;
     }
 
     .project-image {
       width: 100%;
       aspect-ratio: 1.8;
       object-fit: cover;
-      filter: saturate(0.55);
+      filter: none;
     }
 
     .project-body {
@@ -484,6 +423,7 @@
 
     .project h3 {
       font-size: 18px;
+      font-weight: 600;
       line-height: 1.5;
       letter-spacing: -0.3px;
       margin-bottom: 9px;
@@ -504,10 +444,10 @@
 
     .tags span {
       padding: 3px 8px;
-      background: var(--soft);
-      color: var(--accent);
-      border: 1px solid var(--line);
+      border: 1px solid #dce8f8;
       border-radius: 5px;
+      background: #edf4ff;
+      color: var(--accent);
       font-size: 11px;
     }
 
@@ -529,9 +469,9 @@
     }
 
     .project-note {
+      margin-top: 18px;
       color: var(--muted);
       font-size: 12px;
-      margin-top: 19px;
     }
 
     /* CERTIFICATES */
@@ -555,12 +495,12 @@
 
     .certificate:hover {
       transform: translateY(-3px);
-      box-shadow: 0 10px 28px rgba(31, 49, 77, 0.06);
+      box-shadow: 0 10px 28px #23487d12;
     }
 
     .certificate-image {
-      background: var(--soft);
       padding: 16px;
+      background: #f1f5fb;
       border-bottom: 1px solid var(--line);
     }
 
@@ -568,6 +508,7 @@
       width: 100%;
       height: 185px;
       object-fit: contain;
+      filter: none;
     }
 
     .certificate-body {
@@ -575,26 +516,26 @@
     }
 
     .issuer {
+      color: var(--muted);
       font-size: 10px;
       font-weight: 600;
-      letter-spacing: 1px;
-      color: var(--muted);
+      letter-spacing: 0.8px;
       margin-bottom: 8px;
     }
 
     .certificate h3 {
       font-size: 18px;
-      line-height: 1.5;
       font-weight: 600;
+      line-height: 1.5;
     }
 
     .certificate-date {
-      font-size: 13px;
       color: var(--muted);
+      font-size: 13px;
       margin-top: 7px;
     }
 
-    .view-certificate {
+    .certificate-link {
       display: block;
       color: var(--accent);
       font-size: 13px;
@@ -603,9 +544,9 @@
 
     /* CONTACT */
 
-    .contact-description {
+    .contact-text {
       color: var(--muted);
-      max-width: 650px;
+      max-width: 750px;
       margin-bottom: 22px;
     }
 
@@ -618,6 +559,7 @@
     .contact-links a {
       border: 1px solid var(--line);
       border-radius: 7px;
+      background: white;
       padding: 10px 16px;
       font-size: 14px;
       overflow-wrap: anywhere;
@@ -634,30 +576,34 @@
       color: white;
     }
 
+    .contact-links .email:hover {
+      background: #254f8b;
+    }
+
     footer {
-      padding: 24px 0;
-      color: var(--muted);
-      font-size: 12px;
       display: flex;
       justify-content: space-between;
       gap: 16px;
+      padding: 23px 0;
+      color: var(--muted);
+      font-size: 12px;
     }
 
-    /* CERTIFICATE PREVIEW */
+    /* CERTIFICATE MODAL */
 
     dialog {
       width: min(950px, calc(100% - 28px));
-      max-height: 92vh;
+      max-height: 92dvh;
       padding: 0;
       border: 1px solid var(--line);
       border-radius: 12px;
-      color: var(--text);
       background: white;
-      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.2);
+      color: var(--text);
+      box-shadow: 0 30px 100px #0003;
     }
 
     dialog::backdrop {
-      background: rgba(24, 32, 45, 0.65);
+      background: #18202da6;
     }
 
     .dialog-header {
@@ -674,20 +620,21 @@
       line-height: 1.5;
     }
 
-    .close-dialog {
+    .dialog-close {
       flex-shrink: 0;
       width: 35px;
       height: 35px;
-      background: var(--soft);
-      color: var(--text);
       border: 0;
       border-radius: 50%;
+      background: var(--soft);
+      color: var(--text);
       font-size: 25px;
+      line-height: 1;
     }
 
     .dialog-preview {
       padding: 22px;
-      background: var(--soft);
+      background: #f1f5fb;
     }
 
     .dialog-preview img {
@@ -698,8 +645,8 @@
 
     .dialog-links {
       display: flex;
-      gap: 22px;
       flex-wrap: wrap;
+      gap: 22px;
       padding: 18px 22px;
       color: var(--accent);
       font-size: 14px;
@@ -711,19 +658,9 @@
 
     /* TABLET */
 
-    @media (max-width: 1100px) {
-      .sidebar {
-        width: 235px;
-        padding: 30px 22px;
-      }
-
-      .name {
-        font-size: 23px;
-      }
-
+    @media (max-width: 1150px) {
       main {
-        margin-left: 235px;
-        padding: 0 30px;
+        padding-inline: 25px;
       }
 
       .project-grid {
@@ -732,7 +669,7 @@
 
       .project {
         display: grid;
-        grid-template-columns: 200px 1fr;
+        grid-template-columns: 190px minmax(0, 1fr);
       }
 
       .project-image {
@@ -740,85 +677,69 @@
         min-height: 190px;
       }
 
-      .about-grid {
+      .certificate-grid {
         grid-template-columns: 1fr;
       }
     }
 
     /* MOBILE */
 
-    @media (max-width: 700px) {
-      html {
-        scroll-padding-top: 20px;
-      }
-
+    @media (max-width: 760px) {
       .sidebar {
         position: relative;
         width: 100%;
-        padding: 26px 22px;
-        border-right: 0;
+        height: auto;
+        padding: 24px 21px;
         border-bottom: 1px solid var(--line);
       }
 
       .profile-top {
         display: flex;
         align-items: center;
-        gap: 18px;
+        gap: 15px;
       }
 
       .avatar {
-        width: 83px;
-        height: 83px;
+        width: 76px;
+        height: 76px;
         margin: 0;
         flex-shrink: 0;
       }
 
       .name {
-        font-size: 23px;
+        font-size: clamp(17px, 4vw, 23px);
+        letter-spacing: -0.6px;
       }
 
       .role {
+        font-size: 13px;
         margin-top: 5px;
-        font-size: 14px;
       }
 
-      .university {
+      .school {
         font-size: 12px;
-      }
-
-      .focus,
-      .location {
-        display: none;
       }
 
       .navigation {
         display: flex;
         flex-wrap: wrap;
-        gap: 5px;
-        margin: 23px 0 18px;
+        gap: 4px;
+        margin: 20px 0;
       }
 
       .navigation a {
-        font-size: 13px;
-        padding: 7px 10px;
-      }
-
-      .sidebar-bottom {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 18px;
-      }
-
-      .download {
         font-size: 12px;
-        padding: 7px 12px;
+        padding: 7px 9px;
       }
 
-      .socials {
-        margin: 0;
-        gap: 16px;
-        font-size: 12px;
+      .sidebar-section {
+        margin-top: 20px;
+        padding-top: 15px;
+      }
+
+      #profile-divider,
+      .resize-hint {
+        display: none;
       }
 
       main {
@@ -826,22 +747,21 @@
         padding: 0 21px;
       }
 
-      section,
-      #research {
-        padding: 30px 0;
+      section {
+        padding: 29px 0;
       }
 
       .page-title {
-        font-size: 43px;
+        font-size: 30px;
       }
 
-      .intro {
+      .intro,
+      .about-text {
         font-size: 15px;
-        margin-top: 18px;
       }
 
       .section-title {
-        font-size: 27px;
+        font-size: 25px;
       }
 
       .publication {
@@ -852,11 +772,7 @@
         font-size: 17px;
       }
 
-      .publication p {
-        font-size: 14px;
-      }
-
-      .publication-link {
+      .doi {
         font-size: 11px;
       }
 
@@ -870,20 +786,12 @@
         aspect-ratio: 1.9;
       }
 
-      .certificate-grid {
-        grid-template-columns: 1fr;
-      }
-
       .contact-links {
         flex-direction: column;
       }
 
       .contact-links a {
         text-align: center;
-      }
-
-      footer {
-        font-size: 11px;
       }
 
       .dialog-header {
@@ -896,6 +804,10 @@
 
       .dialog-preview {
         padding: 10px;
+      }
+
+      footer {
+        font-size: 11px;
       }
     }
 
@@ -913,75 +825,124 @@
 
 <body>
 
-  <aside class="sidebar" aria-label="Profile">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- PROFILE -->
+
+  <aside class="sidebar" id="profile-sidebar" aria-label="Profile">
     <div class="profile-top">
       <img
         class="avatar"
         src="assets/portrait.webp"
         alt="Kim Huỳnh Tiến Đạt"
-        width="112"
-        height="112">
+        width="110"
+        height="110">
 
       <div>
         <h1 class="name">Kim Huỳnh Tiến Đạt</h1>
         <p class="role">AI Engineer Intern</p>
-        <p class="university">FPT University</p>
+        <p class="school">FPT University</p>
       </div>
     </div>
 
-    <p class="focus">
-      Computer Vision<br>
-      Deep Learning
-    </p>
-
     <nav class="navigation" aria-label="Main navigation">
       <a href="#research" class="active">Research</a>
-      <a href="#about">About & Education</a>
+      <a href="#about">Education</a>
       <a href="#projects">Projects</a>
       <a href="#certifications">Certifications</a>
       <a href="#contact">Contact</a>
     </nav>
 
-    <div class="sidebar-bottom">
-      <a
-        class="download"
-        href="assets/Kim-Huynh-Tien-Dat-CV.pdf"
-        target="_blank"
-        rel="noopener">
-        Download CV ↓
-      </a>
+    <a
+      class="download-cv"
+      href="assets/Kim-Huynh-Tien-Dat-CV.pdf"
+      target="_blank"
+      rel="noopener">
+      Download CV ↓
+    </a>
 
-      <div class="socials">
+    <div class="sidebar-section">
+      <h2>Contact</h2>
+      <p><a href="tel:0376754472">0376 754 472</a></p>
+      <p>
+        <a href="mailto:datkhtce200262@gmail.com">
+          datkhtce200262@gmail.com
+        </a>
+      </p>
+      <p>Cần Thơ, Vietnam</p>
+    </div>
+
+    <div class="sidebar-section">
+      <h2>Online Profiles</h2>
+
+      <p>
         <a
           href="https://github.com/datkhtce200262-hub"
           target="_blank"
           rel="noopener noreferrer">
           GitHub ↗
         </a>
+      </p>
 
+      <p>
         <a
           href="https://orcid.org/0009-0008-9493-0300"
           target="_blank"
           rel="noopener noreferrer">
           ORCID ↗
         </a>
-      </div>
+      </p>
     </div>
 
-    <p class="location">
-      Cần Thơ, Vietnam<br>
-      Open to AI internships
+    <div class="sidebar-section">
+      <h2>Technical Skills</h2>
+      <p><strong>Programming:</strong> Python, Basic SQL</p>
+      <p><strong>Deep Learning:</strong> CNN, MobileNetV2, YOLO</p>
+      <p><strong>Computer Vision:</strong> OpenCV, Image Processing</p>
+      <p><strong>Frameworks:</strong> TensorFlow, Keras</p>
+      <p><strong>Tools:</strong> Git, GitHub, Jupyter Notebook, VS Code</p>
+    </div>
+
+    <div class="sidebar-section">
+      <h2>Languages</h2>
+      <p>Vietnamese: Native</p>
+      <p>English: Learning</p>
+      <p>Japanese: Beginner</p>
+    </div>
+
+    <div class="sidebar-section">
+      <h2>Interests</h2>
+      <p>Artificial Intelligence · Sports &amp; Fitness · Cars</p>
+    </div>
+
+    <p class="resize-hint">
+      Kéo thanh phân cách ↔ để đổi độ rộng.
     </p>
   </aside>
 
-  <main>
+  <!-- DRAG THIS DIVIDER -->
+
+  <div
+    id="profile-divider"
+    role="separator"
+    tabindex="0"
+    aria-label="Resize profile column"
+    aria-orientation="vertical"
+    aria-controls="profile-sidebar"
+    aria-valuemin="320"
+    aria-valuemax="560"
+    aria-valuenow="380"
+    title="Kéo trái/phải để đổi độ rộng. Nhấp đúp để khôi phục.">
+  </div>
+
+  <main id="main-content">
 
     <!-- RESEARCH -->
 
     <section id="research">
       <p class="eyebrow">Artificial Intelligence · Computer Vision</p>
 
-      <h2 class="page-title">Research &amp;<br>Publications</h2>
+      <h2 class="page-title">Research &amp; Publications</h2>
 
       <p class="intro">
         AI student at FPT University with experience in computer vision
@@ -1008,7 +969,7 @@
           Contributed to model experiments and performance evaluation.
         </p>
 
-        <span class="publication-link">
+        <span class="doi">
           DOI: 10.1007/978-981-92-6510-7_27 ↗
         </span>
       </a>
@@ -1032,54 +993,32 @@
           Contributed to model evaluation and experimental analysis.
         </p>
 
-        <span class="publication-link">
+        <span class="doi">
           DOI: 10.1007/978-981-92-6510-7_28 ↗
         </span>
       </a>
     </section>
 
-    <!-- ABOUT -->
+    <!-- OBJECTIVE AND EDUCATION -->
 
     <section id="about">
-      <h2 class="section-title">About &amp; Education</h2>
+      <h2 class="section-title">Career Objective &amp; Education</h2>
 
-      <div class="about-grid">
-        <div>
-          <p class="about-text">
-            I study Artificial Intelligence at FPT University, with an
-            interest in computer vision and deep learning. My project
-            experience includes traffic sign detection, image
-            classification, and image preprocessing.
-          </p>
+      <p class="about-text">
+        Artificial Intelligence student at FPT University with hands-on
+        experience in Deep Learning and Computer Vision projects.
+        Seeking an AI Engineer Internship to apply technical skills,
+        gain industry experience, and contribute to real-world AI solutions.
+      </p>
 
-          <div class="education">
-            <h3>FPT University</h3>
-            <p>Artificial Intelligence · 2024–2028</p>
-            <small>Full Scholarship Program</small>
-          </div>
-        </div>
-
-        <div class="skills">
-          <h3>Technical Skills</h3>
-
-          <div class="skill-group">
-            <div class="skill-label">Programming</div>
-            <p>Python · Basic SQL</p>
-          </div>
-
-          <div class="skill-group">
-            <div class="skill-label">Models &amp; Frameworks</div>
-            <p>CNN · MobileNetV2 · YOLO · TensorFlow · Keras</p>
-          </div>
-
-          <div class="skill-group">
-            <div class="skill-label">Vision &amp; Tools</div>
-            <p>
-              OpenCV · Image Processing · Git · GitHub ·
-              Jupyter Notebook · VS Code
-            </p>
-          </div>
-        </div>
+      <div class="education">
+        <h3>FPT University</h3>
+        <p>Major: Artificial Intelligence</p>
+        <p>2024–2028</p>
+        <small>
+          Full Scholarship Program — selected as one of 10 students
+          eligible for the program.
+        </small>
       </div>
     </section>
 
@@ -1089,6 +1028,7 @@
       <h2 class="section-title">Selected Projects</h2>
 
       <div class="project-grid">
+
         <article class="project">
           <img
             class="project-image"
@@ -1108,8 +1048,12 @@
             <details>
               <summary>Contribution &amp; results</summary>
               <ul>
-                <li>Model development and architecture improvements.</li>
-                <li>Small-object detection and performance evaluation.</li>
+                <li>Contributed to model development.</li>
+                <li>
+                  Worked on architecture improvements for
+                  small-object detection.
+                </li>
+                <li>Contributed to performance evaluation on GTSDB.</li>
                 <li>65.0% mAP@0.5.</li>
                 <li>34.5% mAP@0.5:0.95.</li>
               </ul>
@@ -1148,12 +1092,14 @@
           <img
             class="project-image"
             src="assets/helmet-processing.svg"
-            alt="Helmet image preprocessing illustration"
+            alt="Helmet recognition preprocessing illustration"
             loading="lazy">
 
           <div class="project-body">
             <h3>Helmet Recognition</h3>
-            <p>Image preprocessing to prepare data for helmet recognition.</p>
+            <p>
+              Image preprocessing to prepare data for helmet recognition.
+            </p>
 
             <div class="tags">
               <span>Python</span>
@@ -1169,6 +1115,7 @@
             </details>
           </div>
         </article>
+
       </div>
 
       <p class="project-note">
@@ -1196,7 +1143,7 @@
             <p class="issuer">GOOGLE FOR EDUCATION</p>
             <h3>Gemini Certified Student</h3>
             <p class="certificate-date">February 2026 · University</p>
-            <span class="view-certificate">View certificate ↗</span>
+            <span class="certificate-link">View certificate ↗</span>
           </div>
         </button>
 
@@ -1212,7 +1159,7 @@
             <p class="issuer">IBM · COURSERA</p>
             <h3>AI Foundations for Everyone</h3>
             <p class="certificate-date">April 2026 · 4 courses</p>
-            <span class="view-certificate">View certificate ↗</span>
+            <span class="certificate-link">View certificate ↗</span>
           </div>
         </button>
 
@@ -1228,7 +1175,7 @@
             <p class="issuer">LEARNQUEST · COURSERA</p>
             <h3>Ethics in the Age of AI</h3>
             <p class="certificate-date">June 2026 · 4 courses</p>
-            <span class="view-certificate">View certificate ↗</span>
+            <span class="certificate-link">View certificate ↗</span>
           </div>
         </button>
 
@@ -1244,7 +1191,7 @@
             <p class="issuer">THE UNIVERSITY OF SYDNEY · COURSERA</p>
             <h3>Academic Skills for University Success</h3>
             <p class="certificate-date">November 2025 · 5 courses</p>
-            <span class="view-certificate">View certificate ↗</span>
+            <span class="certificate-link">View certificate ↗</span>
           </div>
         </button>
 
@@ -1256,7 +1203,7 @@
     <section id="contact">
       <h2 class="section-title">Get in Touch</h2>
 
-      <p class="contact-description">
+      <p class="contact-text">
         Open to AI internship opportunities and research collaboration.
         Feel free to reach out.
       </p>
@@ -1289,14 +1236,14 @@
 
   </main>
 
-  <!-- CERTIFICATE MODAL -->
+  <!-- CERTIFICATE PREVIEW -->
 
   <dialog id="certificate-dialog" aria-labelledby="dialog-title">
     <div class="dialog-header">
       <h2 id="dialog-title">Certificate</h2>
 
       <button
-        class="close-dialog"
+        class="dialog-close"
         type="button"
         aria-label="Close certificate">
         ×
@@ -1304,29 +1251,128 @@
     </div>
 
     <div class="dialog-preview">
-      <img id="dialog-image" src="" alt="">
+      <img id="dialog-image" alt="">
     </div>
 
     <div class="dialog-links">
-      <a
-        id="original-link"
-        href="#"
-        target="_blank"
-        rel="noopener">
+      <a id="original-link" target="_blank" rel="noopener">
         Open original ↗
       </a>
 
-      <a
-        id="verify-link"
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer">
+      <a id="verify-link" target="_blank" rel="noopener noreferrer">
         Verify on Coursera ↗
       </a>
     </div>
   </dialog>
 
   <script>
+    /* RESIZABLE PROFILE COLUMN */
+
+    (() => {
+      const divider = document.getElementById("profile-divider");
+      const root = document.documentElement;
+      const mobile = window.matchMedia("(max-width: 760px)");
+
+      let width = 380;
+      let dragging = false;
+
+      function maximumWidth() {
+        return Math.max(320, Math.min(560, window.innerWidth - 420));
+      }
+
+      function resizeProfile(value, save = false) {
+        width = Math.round(
+          Math.max(320, Math.min(maximumWidth(), value))
+        );
+
+        root.style.setProperty("--profile-width", width + "px");
+
+        divider.setAttribute("aria-valuemax", maximumWidth());
+        divider.setAttribute("aria-valuenow", width);
+        divider.setAttribute("aria-valuetext", width + " pixels");
+
+        if (save) {
+          try {
+            localStorage.setItem("dat-profile-width", String(width));
+          } catch (_) {}
+        }
+      }
+
+      try {
+        const saved = Number(localStorage.getItem("dat-profile-width"));
+
+        if (Number.isFinite(saved) && saved >= 320) {
+          width = saved;
+        }
+      } catch (_) {}
+
+      resizeProfile(width);
+
+      divider.addEventListener("pointerdown", event => {
+        if (mobile.matches || event.button !== 0) return;
+
+        dragging = true;
+
+        divider.setPointerCapture(event.pointerId);
+        document.body.classList.add("resizing");
+
+        event.preventDefault();
+      });
+
+      divider.addEventListener("pointermove", event => {
+        if (dragging) {
+          resizeProfile(event.clientX);
+        }
+      });
+
+      function finishResize() {
+        if (!dragging) return;
+
+        dragging = false;
+
+        document.body.classList.remove("resizing");
+        resizeProfile(width, true);
+      }
+
+      divider.addEventListener("pointerup", finishResize);
+      divider.addEventListener("pointercancel", finishResize);
+      divider.addEventListener("lostpointercapture", finishResize);
+
+      divider.addEventListener("dblclick", () => {
+        resizeProfile(380, true);
+      });
+
+      divider.addEventListener("keydown", event => {
+        const step = event.shiftKey ? 40 : 10;
+
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          resizeProfile(width - step, true);
+        }
+
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          resizeProfile(width + step, true);
+        }
+
+        if (event.key === "Home") {
+          event.preventDefault();
+          resizeProfile(320, true);
+        }
+
+        if (event.key === "End") {
+          event.preventDefault();
+          resizeProfile(maximumWidth(), true);
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        resizeProfile(width);
+      });
+    })();
+
+    /* CERTIFICATE MODAL */
+
     const certificates = {
       gemini: {
         title: "Gemini Certified Student",
@@ -1364,7 +1410,7 @@
     const dialogImage = document.getElementById("dialog-image");
     const originalLink = document.getElementById("original-link");
     const verifyLink = document.getElementById("verify-link");
-    const closeButton = document.querySelector(".close-dialog");
+    const closeButton = document.querySelector(".dialog-close");
 
     let previousTrigger = null;
 
@@ -1377,6 +1423,7 @@
         dialogTitle.textContent = certificate.title;
         dialogImage.src = certificate.image;
         dialogImage.alt = certificate.title + " certificate";
+
         originalLink.href = certificate.original;
 
         verifyLink.hidden = !certificate.verify;
@@ -1389,6 +1436,7 @@
 
         dialog.showModal();
         dialog.scrollTop = 0;
+
         document.body.classList.add("dialog-open");
         closeButton.focus();
       });
@@ -1409,7 +1457,9 @@
         event.clientY < bounds.top ||
         event.clientY > bounds.bottom;
 
-      if (outside) dialog.close();
+      if (outside) {
+        dialog.close();
+      }
     });
 
     dialog.addEventListener("close", () => {
@@ -1419,6 +1469,8 @@
         previousTrigger.focus({ preventScroll: true });
       }
     });
+
+    /* ACTIVE NAVIGATION */
 
     const navigationLinks = [
       ...document.querySelectorAll(".navigation a")
@@ -1460,6 +1512,9 @@
         requestAnimationFrame(updateNavigation);
       }
     }, { passive: true });
+
+    window.addEventListener("resize", updateNavigation);
+    window.addEventListener("load", updateNavigation);
 
     updateNavigation();
 
