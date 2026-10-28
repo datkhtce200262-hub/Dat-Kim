@@ -1637,6 +1637,220 @@
     document.getElementById("year").textContent =
       new Date().getFullYear();
   </script>
+<script>
+(() => {
+  const sidebar = document.querySelector(".sidebar");
+  const main = document.querySelector("main");
+  const oldDivider = document.getElementById("profile-divider");
 
+  if (!sidebar || !main || !oldDivider) return;
+
+  /* Thay thanh cũ để loại bỏ các sự kiện kéo bị trùng. */
+  const divider = oldDivider.cloneNode(true);
+  oldDivider.replaceWith(divider);
+
+  /* Gom toàn bộ thông tin thành một khối di chuyển đồng bộ. */
+  let content = sidebar.querySelector(".profile-content");
+
+  if (!content) {
+    content = document.createElement("div");
+    content.className = "profile-content";
+
+    while (sidebar.firstChild) {
+      content.appendChild(sidebar.firstChild);
+    }
+
+    sidebar.appendChild(content);
+  }
+
+  const style = document.createElement("style");
+
+  style.textContent = `
+    .sidebar .profile-content {
+      width: 100%;
+      max-width: 330px;
+      margin-inline: auto;
+    }
+
+    .sidebar .avatar {
+      width: 180px !important;
+      height: 180px !important;
+      object-fit: cover;
+      margin-bottom: 24px;
+    }
+
+    .sidebar .name {
+      white-space: nowrap;
+      font-size: 23px;
+    }
+
+    .sidebar,
+    main,
+    #profile-divider {
+      transition: none !important;
+    }
+
+    .resize-hint {
+      display: block !important;
+    }
+
+    @media (min-width: 761px) {
+      .sidebar {
+        position: fixed !important;
+        width: var(--profile-width) !important;
+        padding-inline: 24px !important;
+      }
+
+      main {
+        margin-left: var(--profile-width) !important;
+        min-width: 0;
+      }
+
+      #profile-divider {
+        display: block !important;
+        left: calc(var(--profile-width) - 5px) !important;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .sidebar {
+        position: relative !important;
+        width: 100% !important;
+      }
+
+      .sidebar .profile-content {
+        max-width: none;
+      }
+
+      main {
+        margin-left: 0 !important;
+      }
+
+      #profile-divider,
+      .resize-hint {
+        display: none !important;
+      }
+
+      .sidebar .avatar {
+        width: 150px !important;
+        height: 150px !important;
+      }
+    }
+  `;
+
+  document.head.appendChild(style);
+
+  const mobile = matchMedia("(max-width: 760px)");
+
+  let width = 360;
+  let pointerId = null;
+  let startX = 0;
+  let startWidth = 360;
+
+  function maximumWidth() {
+    return Math.max(
+      320,
+      Math.min(500, Math.floor(innerWidth * 0.42), innerWidth - 460)
+    );
+  }
+
+  function applyWidth(value, save = false) {
+    width = Math.round(
+      Math.max(320, Math.min(maximumWidth(), value))
+    );
+
+    /*
+     * Một biến chung điều khiển đồng thời:
+     * cột hồ sơ, thanh kéo và phần nội dung bên phải.
+     */
+    document.documentElement.style.setProperty(
+      "--profile-width",
+      width + "px",
+      "important"
+    );
+
+    divider.setAttribute("aria-valuemin", "320");
+    divider.setAttribute("aria-valuemax", maximumWidth());
+    divider.setAttribute("aria-valuenow", width);
+
+    if (save) {
+      try {
+        localStorage.setItem("dat-profile-synced", String(width));
+      } catch (_) {}
+    }
+  }
+
+  try {
+    const saved = Number(localStorage.getItem("dat-profile-synced"));
+
+    if (Number.isFinite(saved) && saved >= 320) {
+      width = saved;
+    }
+  } catch (_) {}
+
+  applyWidth(width);
+
+  divider.addEventListener("pointerdown", event => {
+    if (mobile.matches || event.button !== 0 || pointerId !== null) {
+      return;
+    }
+
+    pointerId = event.pointerId;
+    startX = event.clientX;
+    startWidth = width;
+
+    divider.setPointerCapture(pointerId);
+    document.body.classList.add("resizing");
+
+    event.preventDefault();
+  });
+
+  divider.addEventListener("pointermove", event => {
+    if (event.pointerId !== pointerId) return;
+
+    applyWidth(startWidth + event.clientX - startX);
+  });
+
+  function finish() {
+    if (pointerId === null) return;
+
+    const previousId = pointerId;
+    pointerId = null;
+
+    document.body.classList.remove("resizing");
+    applyWidth(width, true);
+
+    if (divider.hasPointerCapture(previousId)) {
+      divider.releasePointerCapture(previousId);
+    }
+  }
+
+  divider.addEventListener("pointerup", finish);
+  divider.addEventListener("pointercancel", finish);
+  divider.addEventListener("lostpointercapture", finish);
+  window.addEventListener("blur", finish);
+
+  divider.addEventListener("dblclick", () => {
+    applyWidth(360, true);
+  });
+
+  divider.addEventListener("keydown", event => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      applyWidth(width - 10, true);
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      applyWidth(width + 10, true);
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    finish();
+    applyWidth(width);
+  });
+})();
+</script>
 </body>
 </html>
